@@ -1,0 +1,19 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        
+        def is_matched_parenthesis(left, right):
+            
+            return left == '(' and right == ')' or left == '{' and right == '}' or left == '[' and right == ']'
+        
+        stack = []
+        
+        for ch in s:
+            if ch == '(' or ch == '[' or ch == '{':
+                stack.append(ch)
+            else:
+                if not stack or not is_matched_parenthesis(stack[-1], ch):                
+                    return False                    
+                else:                
+                    stack.pop()
+        
+        return not stack
